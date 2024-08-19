@@ -5,6 +5,9 @@ import random
 
 ## TO DO - ADD DOCUMENTATION
 def cross_bin_matching(Y, Z, eta):
+    """
+    Cross bin matching: ...
+    """
     ql_pts = np.arange(0, 1+eta, eta)
     ql_pts[len(ql_pts)-1] = np.floor(ql_pts[len(ql_pts)-1])
     bin_ends = np.quantile(Z, ql_pts)
@@ -33,8 +36,12 @@ def cross_bin_matching(Y, Z, eta):
         
         while J_plus and J_minus:
             #if np.max(Y[J_plus])<np.min(Y[J_minus]): break
-            a = random.choice(J_plus);J_plus.remove(a)
-            b = random.choice(J_minus);J_minus.remove(b)
+            a = J_plus[np.argmax(Y[J_plus])]
+            b = J_minus[np.argmin(Y[J_minus])]
+            J_plus.remove(a)
+            J_minus.remove(b)
+            #a = random.choice(J_plus);J_plus.remove(a)
+            #b = random.choice(J_minus);J_minus.remove(b)
             if Y[a] >= Y[b]:
                 M.append((a,b))
     return(M)
