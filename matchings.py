@@ -64,7 +64,7 @@ def cross_bin_matching(Y, Z, K, binary=False, verbose=True): # eta
     #             M.append((a,b))
     
     M = []
-    for k in tqdm(range(len(bins)-2)): 
+    for k in range(len(bins)-2): 
         #J_plus  = [j for j in range(n) if Y_[j] >= medians[k] and j in bins[k]]
         J_plus = (bins[k][Y_[bins[k]] >= medians[k]]).tolist()
         #J_minus = [j for j in range(n) if Y_[j] < medians[k+1] and j in bins[k+1]]

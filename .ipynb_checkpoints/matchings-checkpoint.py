@@ -3,9 +3,11 @@ import networkx as nx
 import random
 import statistics as stat
 
+from tqdm import tqdm
+
 
 ## TO DO - ADD DOCUMENTATION
-def cross_bin_matching(Y, Z, K, binary=False): # eta
+def cross_bin_matching(Y, Z, K, binary=False, verbose=True): # eta
     """
     Cross bin matching: ...
     """
@@ -29,12 +31,12 @@ def cross_bin_matching(Y, Z, K, binary=False): # eta
     # Y_ = Y
     bins = np.array_split(np.arange(n), K)
 
-    medians = []
-    for bin in bins:
-        medians.append(stat.median(Y_[bin]))
-
     if binary:
         medians=np.full(K,.5)
+    else:
+        medians = []
+        for bin in bins:
+            medians.append(stat.median(Y_[bin]))
         
     # M = []
     # for k in range(len(bin_ends)-2):                 
@@ -62,9 +64,11 @@ def cross_bin_matching(Y, Z, K, binary=False): # eta
     #             M.append((a,b))
     
     M = []
-    for k in range(len(bins)-2):                 
-        J_plus  = [j for j in range(n) if Y_[j] >= medians[k] and j in bins[k]]
-        J_minus = [j for j in range(n) if Y_[j] < medians[k+1] and j in bins[k+1]]
+    for k in range(len(bins)-2): 
+        #J_plus  = [j for j in range(n) if Y_[j] >= medians[k] and j in bins[k]]
+        J_plus = (bins[k][Y_[bins[k]] >= medians[k]]).tolist()
+        #J_minus = [j for j in range(n) if Y_[j] < medians[k+1] and j in bins[k+1]]
+        J_minus = (bins[k+1][Y_[bins[k+1]] < medians[k+1]]).tolist()
         
         while J_plus and J_minus:
             # if np.max(Y_[J_plus])<np.min(Y_[J_minus]): break
@@ -105,7 +109,7 @@ def immediate_neighbor_matching(Y, Z):
 
     i=0;M=[]
     while i<len(Z)-1:
-        if Y[id[i]]>=Y[id[i+1]]:
+        if Y[id[i]]>Y[id[i+1]]:
             M.append((id[i],id[i+1]))
         i+=2
     return(M)
