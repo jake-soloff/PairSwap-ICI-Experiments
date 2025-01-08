@@ -10,10 +10,10 @@ We introduce **PairSwap-ICI**, a novel testing algorithm to assess the condition
 
 - **`simulations/`**  
   Contains code to reproduce the results in **Section 5** of the paper.  
-  Example: Simulation studies for evaluating the power and type-I error control of the PairSwap-ICI test.
+  Example: Simulation studies for evaluating the power and type-I error control of PairSwap-ICI test.
 
 - **`real_data_analysis/`**  
-  Contains code to reproduce the results in **Section 6**, analyzing real-world dataset.
+  Contains code to reproduce the results in **Section 6**, analyzing real-world dataset (a diabetes example).
 
 - **`utils/`**  
   Contains utility functions required for the implementation of the `PairSwap-ICI` test.  
@@ -34,7 +34,7 @@ We introduce **PairSwap-ICI**, a novel testing algorithm to assess the condition
   Computes the $p$-value for the PairSwap-ICI test, given a dataset of $(X,Y,Z)$ and a matching strategy $M$ (e.g., neighbour or cross-bin matching).
 
 - **`marg_indep_test`**
-  Tests the marginal independence hypothesis $H_0:X\perp Y$ given a dataset of $(X,Y,Z)$.
+  Tests the marginal independence hypothesis $H_0:X\perp Y$, given a dataset of $(X,Y,Z)$.
 
 ## Installation
 Clone the repository to get started:
@@ -62,10 +62,10 @@ from utils import neighbour_matching, PairSwapICI_test
 M = neighbour_matching(Y, Z)
 
 # Compute the p-value
-p = PairSwapICI_test(X, Y, M)
+p = PairSwapICI_test(X, Y, M, nperm)
 ```
 ### Cross-bin matching
-To use cross-bin matching, choose a desired number of bins $K$:
+To use `cross-bin matching`, choose a desired number of bins $K$:
 ```python
 from utils import cross_bin_matching, PairSwapICI_test
 
