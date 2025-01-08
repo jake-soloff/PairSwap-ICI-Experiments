@@ -28,7 +28,7 @@ We introduce **PairSwap-ICI**, a novel testing algorithm to assess the condition
   Implements **cross-bin matching** for a user-specified number of bins $K$. 
 
 - **`neighbour_matching`**
-  Implements neighbour matching, which matches $(Y,Z)$ tuples based on their nearest neighbors in $Z$-space.
+  Implements neighbour matching, which matches $(Y,Z)$ tuples based on their nearest neighbours in $Z$-space.
 
 - **`PairSwapICI_test`**
   Computes the $p$-value for the PairSwap-ICI test, given a dataset of $(X,Y,Z)$ and a matching strategy $M$ (e.g., neighbour or cross-bin matching).
@@ -39,8 +39,8 @@ We introduce **PairSwap-ICI**, a novel testing algorithm to assess the condition
 ## Installation
 Clone the repository to get started:
 ```bash
-git clone https://github.com/your_username/PairSwap-ICI.git
-cd PairSwap-ICI
+git clone https://github.com/jake-soloff/shape-constrained-CIT.git
+cd shape-constrained-CIT
 ```
 Ensure you have the required Python libraries installed (e.g., `numpy`, `scipy`). Use the following command to install them:
 ```bash
